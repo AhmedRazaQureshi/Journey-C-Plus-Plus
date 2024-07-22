@@ -98,15 +98,60 @@ int main()
 
         
         //Characters
+        int num;
         for(int j=0; j < ((2*i) + 1) ; j++)
-        {
-            cout<<
-        }
+        {   
             
+            if(j==0 || j<(2*i + 1)/2 )
+            {
+                num = i+j+1;
+                cout<<num++;
+            }
+                
+            else
+                cout<<num--;
+        }
 
+        //Next line
+        cout<<endl;
     }
+    cout<<endl<<endl;
+
+
+
     //Pattern_08: Numeric Hollow Pyramid
-    
+    for(int i=0; i<5; i++)
+    {
+        //Spaces-1
+        for(int j=0; j < ((5-i) - 1); j++)
+            cout<<" ";
+
+        //Character-1  --  Spaces-2  --  Character-2
+        int x=1;
+        if( i==0 || i==(5-1) ) //First & Last Row
+        {
+            for(int j=0; j<=i; j++)
+                cout<<x++<<" ";
+
+            cout<<endl;
+        }
+        else //Rest of the other Rows
+        {
+            //Character-1
+            cout<<"1";
+
+            //Spaces
+            for(int j=0; j<(2*i + 1)-2; j++)
+                cout<<" ";
+
+            //Character-2
+            cout<<i+1;
+
+            //Next line
+            cout<<endl;
+        }
+    }
+    cout<<endl<<endl;
 
     return 0;
 }
