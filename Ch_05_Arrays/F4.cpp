@@ -98,16 +98,38 @@ vector<int> addTwoNumbersByArray(const vector<int>& nums1, const vector<int>& nu
 //Ques#03: Factorial of large no.s (using vector)
 vector<int> findFactorialByVector(int n)
 {
-    vector<int> fact;
+    vector<int> ans;
+    ans.push_back(1);
+    int carry = 0;
     
-    
+    for(int i=2; i<=n; i++)
+    {
+        //Loop for vector (ans)
+        for(int j=0; j<ans.size(); j++)
+        {
+            int currAns = ans[j] * i + carry;
 
+            //Push the digit in vector
+            ans[j] = currAns % 10;
+            //Carry forward
+            carry = currAns/10;
+        }
 
+        //Carry can be multi digits, so one more loop
+        while(carry)
+        {
+            int currAns = carry%10;
 
+            //Push the digit in vector
+            ans.push_back(currAns);
+            //Decrease carry
+            carry /= 10;
+        }
+    }
 
+    reverse(ans.begin(), ans.end());
 
-
-    return fact;
+    return ans;
 }
 
 
