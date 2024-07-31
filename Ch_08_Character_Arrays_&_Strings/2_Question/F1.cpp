@@ -75,7 +75,27 @@ string toLower(string& s)
 }
 
 
+//Ques#07: Compare 3 strings
+bool threeStringComparison(string& s1, string& s2, string& s3)
+{
+    if(s1.length() != s2.length() ||
+       s1.length() != s3.length() ||
+       s2.length() != s3.length()    
+       )
+            return false;
+    
+    //Lengths to pakka barabar hi hain sabki
+    for(int i=0; i<s1.length(); i++)
+    {
+        if(s1[i] != s2[i] ||
+           s1[i] != s3[i] ||
+           s2[i] != s3[i]
+           )
+                return false;
+    }
 
+    return true;
+}
 
 
 int main()
@@ -103,6 +123,11 @@ int main()
     //Ques#06: Convert string to lower case
     cout<<"Lower cased: "<<toLower(s3)<<endl;
 
+    //Ques#07: Compare 3 strings
+    string s4 = "ABCD";
+    string s5 = "ABCD";
+    string s6 = "ABCD";
+    cout<<"Are 3 string equal: "<<threeStringComparison(s4,s5,s6)<<endl;
 
     return 0;
 }

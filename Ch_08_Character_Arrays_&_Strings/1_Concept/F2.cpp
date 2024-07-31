@@ -15,11 +15,22 @@ int main()
     reverse(s1.begin(), s1.end());
     cout<<"Reverse: "<<s1<<endl;
 
-    //3: Replace all occurences of a character
+    //3.1: Replace all occurences of a character by some other character/string
     char oldChar = ' ';
     char newChar = '_';
     replace(s1.begin(), s1.end(), oldChar, newChar);
     cout<<"Replaced string: "<<s1<<endl;
+
+    //3.2: Replace particular part of a string with some other string
+    string source = "012_4567_9";
+    string mod = "#####";
+    source.replace(5, 2, mod); //From index no. 5 onwards, replace 2 characters, by mod
+    cout<<"Replaced string 2: "<<source<<endl;
+
+    //3.3: Erase particular part of a string
+    // string 
+    source.erase(6, 3);       //From index no. 6 onwards, delete 3 characters
+    cout<<"Erased string: "<<source<<endl;
 
     //4: Convert string to upper case
     string s2 = "Hello World!";
