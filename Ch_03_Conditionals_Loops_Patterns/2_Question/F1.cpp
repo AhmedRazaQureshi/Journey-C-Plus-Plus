@@ -1,5 +1,6 @@
-#include <iostream>
+//Question: On Patterns
 
+#include <iostream>
 using namespace std;
 
 int main()

@@ -1,0 +1,44 @@
+//Question: On Pseudocode
+
+//Ques#01: Add two numbers by taking input
+1. Read a, b;
+2. c = a+b;
+3. Print c;
+
+
+//Ques#02: Find circumference of a circle
+1. Read r;
+2. circum = 2*3.14159*r;
+3. Print circum;
+
+
+//Ques#03: Find average of 3 numbers
+1. Read a, b, c;
+2. avg = (a+b+c)/3;
+3. Print avg;
+
+
+//Ques#04: Check number is odd/even
+1. Read n;
+2. if: n%2 == 0
+    then: Print "Even";
+3. else:
+    Print "Odd";
+
+
+//Ques#05: Read marks & print grade of the student
+1. Read m;
+2. if: m>=90
+    then: Print "A";
+3. else if: m>=80
+    then: Print "B";
+4. else if: m>=60
+    then: Print "C";
+5. else if: m>=40
+    then: Print "D";
+6. else:
+    Print "F";
+
+
+//Ques#06: 
+

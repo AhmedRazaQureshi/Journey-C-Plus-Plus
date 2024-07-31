@@ -1,5 +1,4 @@
-//##### :QUESTIONS: #####
-//Binary Search 
+//Question: On Binary Search (BS)
 
 #include <iostream>
 #include <vector>

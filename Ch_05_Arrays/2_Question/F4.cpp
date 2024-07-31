@@ -1,4 +1,4 @@
-//Questions on Array/Vectors
+//Question: On Array/Vectors
 #include <iostream>
 #include <vector>
 #include <algorithm>

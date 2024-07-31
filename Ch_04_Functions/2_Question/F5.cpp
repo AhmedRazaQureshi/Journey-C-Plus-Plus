@@ -1,11 +1,11 @@
-//WAF (Write A Function)
+//Question: On WAF (Write A Function)
 
 #include <iostream>
 #include <cmath>
 #include <vector>
 using namespace std;
 
-//1: Factorial
+//Ques#01: Factorial
 long long findFactorial(int n)
 {
     //Edge case
@@ -20,7 +20,7 @@ long long findFactorial(int n)
     return n*findFactorial(n-1);
 }
 
-//2: To check if 'n' is prime
+//Ques#02: To check if 'n' is prime
 bool isPrime(int n)
 {
     //Edge case
@@ -37,7 +37,7 @@ bool isPrime(int n)
     return true;
 }
 
-//3: All primes from 1 to n
+//Ques#03: All primes from 1 to n
 vector<int> allPrimes(int n)
 {
     vector<int> primes;
@@ -50,7 +50,7 @@ vector<int> allPrimes(int n)
 
 }
 
-//4: Reverse 'n'
+//Ques#04: Reverse 'n'
 int reverseNumber(int n)
 {
     int num = n;
@@ -79,7 +79,7 @@ int reverseNumber(int n)
     return revNum;
 }
 
-//5: Get digits of 'n'
+//Ques#05: Get digits of 'n'
 vector<int> getDigits(int n)
 {
     vector<int> digits;
@@ -101,7 +101,7 @@ vector<int> getDigits(int n)
     return digits;
 }
 
-//6: Count set bits in binary of 'n'
+//Ques#06: Count set bits in binary of 'n'
 int countSetBits(int n)
 {
     int count = 0;
@@ -117,7 +117,7 @@ int countSetBits(int n)
     return count;
 }
 
-//7: Decimal to Binary
+//Ques#07: Decimal to Binary
 long long decimalToBinary(int n)
 {
     long long bin=0;
@@ -132,7 +132,7 @@ long long decimalToBinary(int n)
     return bin;
 }
 
-//8: Binary to Decimal
+//Ques#08: Binary to Decimal
 long long binaryToDecimal(long long n)
 {
     long long dec=0;
@@ -162,12 +162,8 @@ int main()
     int n1 = 5;
     cout<<findFactorial(n1)<<endl;
 
-
-
     int n2 = 139;
     cout<<isPrime(n2)<<endl;
-
-
 
     int n3 = 100;
     vector<int> primes = allPrimes(n3);
@@ -175,12 +171,8 @@ int main()
         cout<<primes[i]<<", ";
     cout<<endl;
 
-
-
     int n4 = -1234;
     cout<<reverseNumber(n4)<<endl;
-
-
 
     int n5 = 1234;
     vector<int> digits = getDigits(n5);
@@ -189,20 +181,14 @@ int main()
         cout<<digits[i]<<", ";
     cout<<endl;
 
-
-
     int n6 = 1025;
     cout<<countSetBits(n6)<<endl;
-
-
 
     int n7 = 5;
     cout<<decimalToBinary(n7)<<endl;
 
-
     long long n8 = 10000000001;
     cout<<binaryToDecimal(n8)<<endl;
-
 
 
     return 0;

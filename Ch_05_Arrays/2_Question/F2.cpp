@@ -1,4 +1,4 @@
-//Questions on C Like Arrays
+//Question: On C Like Arrays
 #include <iostream>
 using namespace std;
 

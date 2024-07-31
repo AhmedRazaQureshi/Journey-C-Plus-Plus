@@ -1,5 +1,4 @@
-//##### :QUESTIONS: #####
-//Linear Search 
+//Question: On Linear Search (LS)
 
 #include <iostream>
 #include <vector>
