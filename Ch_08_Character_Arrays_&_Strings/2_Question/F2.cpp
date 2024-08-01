@@ -3,10 +3,12 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <vector>
+#include <climits>
 using namespace std;
 
 
-//Ques#01: Remove all adjacent duplicates in a string [TRICKY]
+//Ques#01: [TRICKY] Remove all adjacent duplicates in a string 
 string removeAdjacentDuplicates(string& s)
 {
     string ans = "";
@@ -41,13 +43,102 @@ void removeSubstringOccurences(string& source, string& subStr)
 }
 
 
-//Ques#03: Find if given string canbecome pallindrome after deleting at most 1 character
-bool isPallindromeConvertible(string s1)
+//Ques#03: [TRICKY] Find if given string canbecome pallindrome after deleting at most 1 character 
+bool helperForIsPallindrome(string& s, int i, int j)
 {
-        
+    while(i <= j)
+    {
+        if(s[i] != s[j])
+            return false;
+
+        i++;
+        j--;
+    }
+    return true;
+}
+
+bool isPallindromeConvertible(string& s)
+{
+    int i=0;
+    int j=s.length()-1;
+
+    while(i <= j)
+    {
+        if(s[i] != s[j])
+            return helperForIsPallindrome(s,i,j-1) || helperForIsPallindrome(s,i+1,j);
+        else
+            {i++; j--;}
+    }
+
+    return true;
 }
 
 
+//Ques#04: [TRICKY] Minimum time difference
+int findMinTimeDiff(vector<string>& times)
+{
+    //Step-1: Convert HH:MM (string) to MM (int)
+    vector<int> intMinutes;
+    for(int i=0; i<times.size(); i++)
+    {
+        string currTime = times[i];
+
+        int currHours = stoi(currTime.substr(0, 2));
+        int currMinutes = stoi(currTime.substr(3, 2));
+
+        currMinutes += (currHours*60); 
+        intMinutes.push_back(currMinutes);
+    }
+
+    //Step-2: Sort intMinutes (taaki sirf adjacents hi compare karane padein)
+    sort(intMinutes.begin(), intMinutes.end());
+
+    //Step-3: Compare adjacents (last mein extremes also you compare)
+    int minimumTimeDifference = INT_MAX;
+    for(int i=1; i<intMinutes.size(); i++)
+    {
+        int currTimeDifference = abs(intMinutes[i-1] - intMinutes[i]);
+        minimumTimeDifference = min(minimumTimeDifference, currTimeDifference);
+    }
+    //Ab extremes ko compare karao
+    int diff_clockWise = abs(intMinutes[0] - intMinutes[intMinutes.size()-1]);
+    int diff_antiClockWise = abs(1440 + intMinutes[0] - intMinutes[intMinutes.size()-1]);
+
+    //Step-3: Final answer
+    minimumTimeDifference = min(minimumTimeDifference, min(diff_clockWise, diff_antiClockWise));
+
+    return minimumTimeDifference;
+}
+
+
+//Ques#05: [TRICKY] Count total pallindromic substrings in given string
+int helperForCountPallindrome(string& s, int i, int j)
+{
+    int count = 0;
+    while(i>=0 && j<s.length() && (s[i]==s[j]))
+    {
+        count++;
+        i--;
+        j++;
+    }
+    return count;
+}
+int countPallindromicSubstrings(string& s)
+{
+    int count = 0;
+    //Har ek character k around expand krna hai(2 tareeke se)
+    for(int i=0; i<s.length(); i++)
+    {
+        //Counting Odd length pallindromes
+        count += helperForCountPallindrome(s, i, i);
+        //Counting Evem length pallindromes
+        count += helperForCountPallindrome(s, i, i+1);
+    }
+    return count;
+}
+
+
+//Ques#06: 
 
 int main()
 {
@@ -63,6 +154,19 @@ int main()
     cout<<"After removal of subStr: "<<s2<<endl;
 
     //Ques#03: Find if given string canbecome pallindrome after deleting at most 1 character
+    string s3 = "leverl";
+    cout<<"Is pallindrome convertible? : "<<isPallindromeConvertible(s3)<<endl;
+
+    //Ques#04: Minimum time difference
+    vector<string> times = {"12:10","10:15","13:15","17:20","18:00","19:47","23:59"};
+    cout<<"Minimum time diff: "<<findMinTimeDiff(times)<<endl;
+
+    //Ques#05: Count total pallindromic substrings in given string
+    string s4 = "noon";
+    cout<<"Total pallindromic substrings are: "<<countPallindromicSubstrings(s4)<<endl;
+
+    //Ques#06: 
+
 
 
     return 0;

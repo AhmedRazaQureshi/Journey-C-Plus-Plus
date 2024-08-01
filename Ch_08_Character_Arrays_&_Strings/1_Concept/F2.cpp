@@ -73,7 +73,10 @@ int main()
     if(  s6.find(target) == string::npos  )     cout<<"Not found"<<endl;
     else                                        cout<<"Found at: "<<s6.find(target)<<endl;
 
-    //12: 
+    //12: Convert a string numerical data to int numerical data
+    string s7 = "1234";
+    int stringToInt = stoi(s7);
+    cout<<"String to int: "<<stringToInt<<endl;
 
 
 

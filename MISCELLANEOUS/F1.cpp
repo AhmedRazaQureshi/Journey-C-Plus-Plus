@@ -1,0 +1,25 @@
+//Basic idea of HashMap
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main()
+{
+    string s = "ahmedrazaqureshi";
+
+    //Creation
+    map<char,int> freq;
+
+    //Insertion
+    for(int i=0; i<s.length(); i++)
+    {
+        char currChar = s[i];
+
+        freq[currChar] += 1;
+    }
+
+    cout<<"Character frequencies: "<<endl;
+    for(auto i: freq) 
+        cout<<i.first<<" -> "<<i.second<<endl;
+
+}
