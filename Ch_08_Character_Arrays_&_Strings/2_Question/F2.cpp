@@ -138,7 +138,34 @@ int countPallindromicSubstrings(string& s)
 }
 
 
-//Ques#06: 
+//Ques#06: [TRICKY] Make largest number (by concatenation)
+bool cmp_06(int a, int b)
+{
+    string num1 = to_string(a); //3
+    string num2 = to_string(b); //30
+
+    if( num1+num2 > num2+num1 ) //3,30 > 30,3
+        return true;
+    else
+        return false;
+}
+
+string findLargestByConcat(vector<int>& nums)
+{
+    //nums -> 3,30,34,5,9
+    sort(nums.begin(), nums.end(), cmp_06);
+    //nums -> 9,5,34,3,30
+
+    string ans = "";
+    for(int i=0; i<nums.size(); i++)
+        ans += to_string(nums[i]);
+
+    //Edge case
+    if(ans[0] == '0')
+        return "0";
+
+    return ans;
+}
 
 int main()
 {
@@ -165,7 +192,11 @@ int main()
     string s4 = "noon";
     cout<<"Total pallindromic substrings are: "<<countPallindromicSubstrings(s4)<<endl;
 
-    //Ques#06: 
+    //Ques#06: Make largest number (by concatenation)
+    vector<int> s5 = {3,30,34,5,9};
+    cout<<"Largest number by concatenation: "<<findLargestByConcat(s5)<<endl;
+
+    //Ques#07: 
 
 
 

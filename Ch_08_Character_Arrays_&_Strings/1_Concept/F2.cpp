@@ -78,6 +78,11 @@ int main()
     int stringToInt = stoi(s7);
     cout<<"String to int: "<<stringToInt<<endl;
 
+    //13: Convert an integer to string
+    int num = 1234;
+    string s8 = to_string(num);
+    cout<<"Number in string: "<<s8<<endl;
+
 
 
     return 0;
