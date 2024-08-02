@@ -4,6 +4,7 @@
 using namespace std;
 
 //Ques#01: Find length of a string w/o STL
+//LEETCODE: 58. Length of last word
 int findLength(string& s)
 {
     int i=0;
@@ -15,6 +16,7 @@ int findLength(string& s)
 
 
 //Ques#02: Reverse a string 
+//LEETCODE: 344. Reverse string
 string findReverse(string& s)
 {
     int i=0;
@@ -32,6 +34,7 @@ string findReverse(string& s)
 
 
 //Ques#03: Replace all occurences of a character
+//LEETCODE: 1844. Replace all digits with characters
 string findReplacement(string& s, char oldChar, char newChar)
 {
     for(int i=0; i<s.length(); i++)
@@ -43,6 +46,7 @@ string findReplacement(string& s, char oldChar, char newChar)
 
 
 //Ques#04: Palindrome checker
+//LEETCODE: 125. Valid palindrome
 bool isPalindrome(string& s)
 {
     for(int i=0, j=s.length()-1; i <= j; i++, j--)
@@ -65,6 +69,7 @@ string toUpper(string& s)
 
 
 //Ques#06: Convert string to lower case
+
 string toLower(string& s)
 {
     for(int i=0; i<s.length(); i++)

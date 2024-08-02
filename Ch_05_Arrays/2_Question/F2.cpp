@@ -38,6 +38,7 @@ void squareMatrixTranspose(int** a, int n)
 
 
 //Ques#04: Transpose of non-sq. matrix (outplace)
+//LEETCODE: 867. Transpose Matrix
 int** allMatrixTranspose(int** a, int m, int n)
 {
     //Given matrix -> mXn

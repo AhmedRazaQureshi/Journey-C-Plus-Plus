@@ -1,6 +1,7 @@
 // Vector basics
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 /* 
@@ -71,6 +72,25 @@ int main()
         cout<<endl;
     }
     cout<<endl;
+
+
+
+
+    //How to remove duplicate elements from a vector
+    vector<int> vec = {1, 2, 3, 2, 4, 1, 5, 3};
+
+    // Step 1: Sort the vector
+    sort(vec.begin(), vec.end());
+
+    // Step 2: Use unique to remove duplicates
+    auto last = unique(vec.begin(), vec.end());
+
+    // Step 3: Erase the 'removed' elements
+    vec.erase(last, vec.end());
+
+    // Output the result
+    for (int n : vec) 
+        cout << n << " ";
         
     return 0;
 }

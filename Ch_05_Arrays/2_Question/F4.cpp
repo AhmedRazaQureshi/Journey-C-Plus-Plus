@@ -5,6 +5,7 @@
 using namespace std;
 
 //Ques#01: Sort array of 0's, 1's & 2's [Sort Colors] (inplace)
+//LEETCODE: 75. Sort Colors
 //Method-1: Count 0's, 1's & 2's
 void sortColorsMethod1(vector<int>& nums)
 {
@@ -72,7 +73,8 @@ void sortColorsMethod2(vector<int>& nums)
 
 
 //Ques#02: Add two numbers represented by two arrays (each digit is in a cell of array)
-vector<int> addTwoNumbersByArray(const vector<int>& nums1, const vector<int>& nums2)
+//LEETCODE: 2. Add two numbers
+vector<int> addTwoNumbersByArray(vector<int>& nums1, vector<int>& nums2)
 {
     int i = nums1.size() - 1; // Pointer to the rightmost cell of array1
     int j = nums2.size() - 1; // Pointer to the rightmost cell of array2
@@ -96,6 +98,8 @@ vector<int> addTwoNumbersByArray(const vector<int>& nums1, const vector<int>& nu
 
 
 //Ques#03: Factorial of large no.s (using vector)
+//GFG: Factorials of large numbers
+
 vector<int> findFactorialByVector(int n)
 {
     vector<int> ans;

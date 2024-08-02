@@ -86,6 +86,7 @@ void reverseArray(vector<int>& nums, int n)
 
 
 //Ques#06: Find unique element in array, every other element occurs twice
+//LEETCODE: 136. Single number
 int findUnique(vector<int>& nums)
 {
     int ans=0;
@@ -97,6 +98,7 @@ int findUnique(vector<int>& nums)
 
 
 //Ques#07: Find intersection of two arrays
+//LEETCODE: 349. Intersection of two arrays
 vector<int> findIntersection(vector<int>& nums1, vector<int>& nums2)
 {
     vector<int> a = nums1;
@@ -118,6 +120,7 @@ vector<int> findIntersection(vector<int>& nums1, vector<int>& nums2)
 
 
 //Ques#08: Find union of two arrays
+//GFG: Union of two arrays
 vector<int> findUnion(vector<int>& nums1, vector<int>& nums2)
 {
     vector<int> a = nums1;
@@ -145,6 +148,7 @@ vector<int> findUnion(vector<int>& nums1, vector<int>& nums2)
 
 
 //Ques#09: Find pair that sums to 'k' in array
+//LEETCODE: 1. Two sum
 pair<int, int> findPairSum(vector<int>& nums, int k)
 {
     //n*LS
@@ -158,6 +162,7 @@ pair<int, int> findPairSum(vector<int>& nums, int k)
 
 
 //Ques#10: Find triplet that sums to 'k' in array
+//LEETCODE: 15. 3Sum
 vector<int> findTripletSum(vector<int>& nums, int sum)
 {
     vector<int> triplets;
@@ -179,6 +184,7 @@ vector<int> findTripletSum(vector<int>& nums, int sum)
 
 
 //Ques#11: Sort an array of 0's & 1's
+//LEETCODE: 905. Sort array by parity
 void sortZeroOne(vector<int>& nums)
 {
     //Approach: put all 0's in front of array

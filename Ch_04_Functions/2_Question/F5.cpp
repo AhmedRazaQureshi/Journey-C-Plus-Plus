@@ -102,6 +102,7 @@ vector<int> getDigits(int n)
 }
 
 //Ques#06: Count set bits in binary of 'n'
+//LEETCODE: 191. Number of 1 Bits
 int countSetBits(int n)
 {
     int count = 0;
@@ -133,6 +134,7 @@ long long decimalToBinary(int n)
 }
 
 //Ques#08: Binary to Decimal
+//LEETCODE: 1290. Convert Binary Number in a Linked List to Integer
 long long binaryToDecimal(long long n)
 {
     long long dec=0;
