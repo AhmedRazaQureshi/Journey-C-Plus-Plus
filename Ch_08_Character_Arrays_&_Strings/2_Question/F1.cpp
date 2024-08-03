@@ -58,6 +58,7 @@ bool isPalindrome(string& s)
 
 
 //Ques#05: Convert string to upper case
+//LEETCODE: 2129. Capitalize the title
 string toUpper(string& s)
 {
     for(int i=0; i<s.length(); i++)
@@ -69,6 +70,7 @@ string toUpper(string& s)
 
 
 //Ques#06: Convert string to lower case
+//LEETCODE: 709. To lower case
 
 string toLower(string& s)
 {
@@ -81,6 +83,7 @@ string toLower(string& s)
 
 
 //Ques#07: Compare 3 strings
+//LEETCODE: 2937. Make three strings equal
 bool threeStringComparison(string& s1, string& s2, string& s3)
 {
     if(s1.length() != s2.length() ||

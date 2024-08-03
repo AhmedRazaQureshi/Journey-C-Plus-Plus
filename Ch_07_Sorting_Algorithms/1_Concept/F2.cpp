@@ -87,6 +87,13 @@ int main()
     cout<<endl;
 
 
+    //3: Sort in descending by using STL
+    vector<int> data = {3,5,1,7,2,6,9,4,8};
+    sort(data.rbegin(), data.rend());
+    cout<<"Data (DESC. by STL): ";
+    for(auto i: data) cout<<i<<", ";
+    
+
 
     return 0;
 }
