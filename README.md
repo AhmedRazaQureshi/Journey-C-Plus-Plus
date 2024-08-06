@@ -1,17 +1,7 @@
 # Learn DSA and C++ through this repository.
 # <hr>
 # Chapterwise breakdown
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
- <br>
 
-|                     Column 1                     |                         Column 2                       |
 |--------------------------------------------------|--------------------------------------------------------|
 | **Ch_01:** Flowchart and Pseudocode              | **Ch_14:** OOPS (Object Oriented Programming Systems)  |
 | **Ch_02:** Variables, Datatypes and Operators    | **Ch_15:** LL (Linked Lists)                           |
