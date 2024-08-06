@@ -12,4 +12,5 @@ Ch_08: Character arrays and Strings <br>
 Ch_09: Pointers <br>
 
 # <hr>
-# List to Leetcode and GFG practice problems covered chapterwise : <a href=https://docs.google.com/spreadsheets/d/1wVjW8XyL5s_HYm1B6CS9pF-C8Cckv-JLME7cSOxWD5U/edit?usp=sharing> Click me <\a> 
+# List to Leetcode and GFG practice problems covered chapterwise : 
+[Click me](href=https://docs.google.com/spreadsheets/d/1wVjW8XyL5s_HYm1B6CS9pF-C8Cckv-JLME7cSOxWD5U/edit?usp=sharing)
