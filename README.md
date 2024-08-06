@@ -13,4 +13,4 @@ Ch_09: Pointers <br>
 
 # <hr>
 # List to Leetcode and GFG practice problems covered chapterwise : <br>
-[Click me]("href=https://docs.google.com/spreadsheets/d/1wVjW8XyL5s_HYm1B6CS9pF-C8Cckv-JLME7cSOxWD5U/edit?usp=sharing"   "Problems")
+[Click]("href=https://docs.google.com/spreadsheets/d/1wVjW8XyL5s_HYm1B6CS9pF-C8Cckv-JLME7cSOxWD5U/edit?usp=sharing")
