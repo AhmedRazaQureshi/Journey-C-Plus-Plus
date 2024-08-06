@@ -9,6 +9,7 @@ using namespace std;
 
 
 //Ques#01: [TRICKY] Remove all adjacent duplicates in a string 
+//LEETCODE: 1047. Remove all adjacent duplicates in string
 string removeAdjacentDuplicates(string& s)
 {
     string ans = "";
@@ -27,6 +28,7 @@ string removeAdjacentDuplicates(string& s)
 
 
 //Ques#02: Remove all occurences of the substring 'subStr' from the string 'source'
+//LEETCODE: 1910. Remove all occurences of a substring
 void removeSubstringOccurences(string& source, string& subStr)
 {
     bool flag = true;
@@ -43,7 +45,8 @@ void removeSubstringOccurences(string& source, string& subStr)
 }
 
 
-//Ques#03: [TRICKY] Find if given string canbecome pallindrome after deleting at most 1 character 
+//Ques#03: [TRICKY] Find if given string can become pallindrome after deleting at most 1 character 
+//LEETCODE: 680. Valid palindrome 2
 bool helperForIsPallindrome(string& s, int i, int j)
 {
     while(i <= j)
@@ -75,6 +78,7 @@ bool isPallindromeConvertible(string& s)
 
 
 //Ques#04: [TRICKY] Minimum time difference
+//LEETCODE: 539. Minimum time difference
 int findMinTimeDiff(vector<string>& times)
 {
     //Step-1: Convert HH:MM (string) to MM (int)
@@ -112,6 +116,7 @@ int findMinTimeDiff(vector<string>& times)
 
 
 //Ques#05: [TRICKY] Count total pallindromic substrings in given string
+//LEETCODE: 647. Palindromic substrings
 int helperForCountPallindrome(string& s, int i, int j)
 {
     int count = 0;
@@ -139,6 +144,7 @@ int countPallindromicSubstrings(string& s)
 
 
 //Ques#06: [TRICKY] Make largest number (by concatenation)
+//LEETCODE: 179. Largest number
 bool cmp_06(int a, int b)
 {
     string num1 = to_string(a); //3
@@ -166,6 +172,53 @@ string findLargestByConcat(vector<int>& nums)
 
     return ans;
 }
+
+
+//Ques#07: Valid anagram
+//LEETCODE: 242. Valid anagram
+bool isAnagram(string& s1, string s2)
+{
+    //Count frequencies
+    int freq[256]={0};
+
+    for(int i=0; i<s1.length(); i++)
+        freq[s1[i]]++;
+    
+    for(int i=0; i<s2.length(); i++)
+        freq[s2[i]]--;
+
+    for(int i=0; i<256; i++)
+        if(freq[i] != 0)
+            return false;
+    
+    return true;
+}
+
+
+//Ques#08: Reverse only letters
+//LEETCODE: 917. Reverse only letters
+string reverseOnlyLetters(string& s)
+{
+    //Two ptr 
+    int i=0;
+    int j=s.length()-1;
+
+    while(i <= j)
+    {
+        if(isalpha(s[i]) && isalpha(s[j]))
+        {
+            swap(s[i],s[j]);
+            i++;
+            j--;
+        }
+        else if(!isalpha(s[i]))
+            i++;
+        else    
+            j--;
+    }
+    return s;
+}
+
 
 int main()
 {
@@ -196,7 +249,15 @@ int main()
     vector<int> s5 = {3,30,34,5,9};
     cout<<"Largest number by concatenation: "<<findLargestByConcat(s5)<<endl;
 
-    //Ques#07: 
+    //Ques#07: Valid anagram
+    string s6 = "anagram";
+    string s7 = "nagaram";
+    cout<<"Are they anagram? : "<<isAnagram(s6, s7)<<endl;
+
+    //Ques#08: Reverse only letters
+    string s8 = "Test1ng-Leet=code-Q!";
+    cout<<"Reverse only letters: "<<reverseOnlyLetters(s8)<<endl;    
+
 
 
 

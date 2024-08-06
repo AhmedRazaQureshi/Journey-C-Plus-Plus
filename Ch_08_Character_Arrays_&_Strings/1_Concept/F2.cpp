@@ -29,7 +29,7 @@ int main()
     cout<<"Replaced string 2: "<<source<<endl;
 
     //3.3: Erase particular part of a string
-    // string 
+    //LEETCODE: 1957. Delete characters to make fancy string
     source.erase(6, 3);       //From index no. 6 onwards, delete 3 characters
     cout<<"Erased string: "<<source<<endl;
 
@@ -83,6 +83,11 @@ int main()
     int num = 1234;
     string s8 = to_string(num);
     cout<<"Number in string: "<<s8<<endl;
+
+    //14. Check if s[i] is alphabet (A-Z or a-z) ?
+    string s9 = "Test1ng";
+    cout<<"s9[3] is alpha? : "<<isalpha(s9[3])<<"   ";
+    cout<<"s9[4] is alpha? : "<<isalpha(s9[4])<<endl;
 
 
 
