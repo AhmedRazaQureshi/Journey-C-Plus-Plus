@@ -1,6 +1,6 @@
-# Learn DSA and C++ through this repository.
+# Learn DSA and C++ through my repository.
 # <hr>
-# Structure of repository:
+# Structure of the repository:
 + Ch_NUM_NAME  (Chapter number & name)
   + 1_Concept  (Conceptual knowledge for that chapter)
   + 2_Question (Related questions solved on personal console/editor)
