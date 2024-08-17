@@ -91,24 +91,74 @@ int recBinSear(vector<int>& v, int s, int e, int& t)
 }
 
 //Ques#07: Find all subsequence of a string
-void findSubseq(string& s, string currOutput, int i, vector<string>& subs)
+void findSubseq(string& str, string currSubseq, int i, vector<string>& ans)
 {
     //BC
-    if(i > s.length()-1)
+    if(i >= str.length())
         return;
 
-
-    //REC
-    string current;
-    //Take
-    current.push_back(s[i]);
-    subs.push_back(current);
-    findSubseq(s, subs, i+1, n);
-    //Don't take
-    current.pop_back();
-    findSubseq(s, subs, i+1, n);
-
+    //Exclude 
+    findSubseq(str, currSubseq, i+1, ans);
+    //Include
+    currSubseq.push_back(str[i]);
+    ans.push_back(currSubseq);
+    findSubseq(str, currSubseq, i+1, ans);
 }
+
+//Ques#08: Coin sum problem (1$, 2$, 3$ infinite coins available; find min. coins needed to get 5$)
+int findMinCoin(vector<int>& coins, int target)
+{
+    //BC
+    if(target == 0)  //Answer found
+        return 0;
+    if(target < 0)   //Answer not found
+        return INT_MAX;
+
+    //Recursion
+    int currLevelAns = INT_MAX;
+    for(int i=0; i<coins.size(); i++)
+    {
+        int currBranchAns = findMinCoin(coins, target-coins[i]);
+        if(currBranchAns != INT_MAX)
+            currLevelAns = min(currLevelAns, 1+currBranchAns);
+    }
+
+    return currLevelAns;
+}
+
+//Ques#09: Rod cutting problem ('n' rod length; 'x y z' segments lengths allowed to cut; Find max possible segments you can get if you cut the rod)
+int findMaxSegments(int n, int x, int y, int z)
+{
+    //BC
+    if(n == 0) return 0; //Answer found
+    if(n < 0) return INT_MIN; //Answer not found
+
+    //Recursion
+    int _x = 1 + findMaxSegments(n-x, x, y, z);
+    int _y = 1 + findMaxSegments(n-y, x, y, z);
+    int _z = 1 + findMaxSegments(n-z, x, y, z);
+
+    int ans = max(_x, max(_y, _z));
+    return ans;
+}
+
+//Ques#10: Maximizing non-adjacent sum (In an array find max sum of subsequence in which no two elements are adjacent)
+int findMaxSubseqSum(vector<int>& nums, int i, int currSum)
+{
+    //BC
+    if(i >= nums.size()) 
+        return currSum;
+
+    //Recursion
+
+    //Include
+    int ans1 = findMaxSubseqSum(nums, i+2, currSum+nums[i]);
+    //Exclude
+    int ans2 = findMaxSubseqSum(nums, i+1, currSum);
+
+    return max(ans1,ans2);
+}
+
 
 int main()
 {
@@ -149,13 +199,32 @@ int main()
 
     //Ques#07: Find all subsequence of a string
     string s2 = "abc";
-    string currOutput = "";
-    vector<string> subs;
-    subs.push_back(currOutput);
+    string currOutput = ""; //Empty string ko include karane k liye
+    vector<string> subs; //Final answer for all substrings
+    subs.push_back(currOutput); //Empty string push karwai
     findSubseq(s2, currOutput, 0, subs);
-    for(auto i: subSequences)
+    for(auto i: subs)
         cout<<i<<",";
     cout<<endl;
+
+    //Ques#08: Coin sum problem (1$, 2$, 3$ infinite coins available; find min. coins needed to get 5$)
+    vector<int> coins = {1,2,3};
+    int sum = 5;
+    int minCoins = findMinCoin(coins, sum);
+    cout<<"Minimum coins to make sum 5: "<<minCoins<<endl;
+
+    //Ques#09: Rod cutting problem ('n' rod length; 'x y z' segments lengths allowed to cut; Find max possible segments you can get if you cut the rod)
+    int rodLength = 7;
+    int seg1=5, seg2=2, seg3=2;
+    int maxSegments = findMaxSegments(rodLength, seg1, seg2, seg3);
+    cout<<"Maximum segments you got: "<<maxSegments<<endl;
+
+    //Ques#10: Maximizing non-adjacent sum (In an array find max sum of subsequence in which no two elements are adjacent)
+    vector<int> numbers = {2,1,4,9};
+    int maxSubseqSum = findMaxSubseqSum(numbers, 0, 0);
+    cout<<"Maximum non-adjacent sum: "<<maxSubseqSum<<endl;
+
+
 
     return 0;
 }

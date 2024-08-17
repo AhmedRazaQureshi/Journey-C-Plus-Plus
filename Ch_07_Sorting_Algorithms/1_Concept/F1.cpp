@@ -71,7 +71,62 @@ void insertionSort(vector<int>& nums)
 }
 
 
-//#4: 
+//#4: Merge sort [HAAL KHARAB]
+//M-1: Outplace
+void mergeAlgoOutplace(vector<int>& nums, int s, int e)
+{
+    //Step-1: Create two arrays
+    int m = s+(e-s)/2;
+    int len1 = m-s+1;
+    int len2 = e-m;
+
+    vector<int> left(len1);
+    vector<int> right(len2);
+
+    //Step-2: Populate left & right arrays with 'nums'
+    int k=s; //for nums traversal
+    for(int i=0; i<len1; i++)
+        left[i] = nums[k++];
+
+    k=m+1;
+    for(int i=0; i<len2; i++)
+        right[i] = nums[k++];
+
+    //Step-3: Merge left & right into 'nums', but make sure correct ranges of 'nums'
+    int i=0; //For left<vector> traversal
+    int j=0; //For right<vector> traversal
+    k = s; //For nums<vector> traversal
+
+    while(i<len1 && j<len2)
+    {
+        if(left[i] < right[j])
+            nums[k++] = left[i++];
+        else
+            nums[k++] = right[j++];
+    }
+
+    while(i<len1)
+        nums[k++] = left[i++];
+
+    while(j<len2)
+        nums[k++] = right[j++];
+}
+
+void mergeSortOutplace(vector<int>& nums, int s, int e)
+{
+    //BC
+    if(s >= e)
+        return;  //1 element => do nothing
+
+
+    //Divide
+    int m = s+(e-s)/2;
+    mergeSortOutplace(nums, s, m);
+    mergeSortOutplace(nums, m+1, e);
+
+    //Conquer & Combine
+    mergeAlgoOutplace(nums, s, e);
+}
 
 //Just a helper to print array
 void printArray(vector<int>& nums)
@@ -102,7 +157,10 @@ int main()
     insertionSort(nums3);
     printArray(nums3);
 
-    //#4: 
+    //#4: Merge sort (outplace)
+    vector<int> nums4 = {100, 87, 200, 65, 34, 90};
+    mergeSortOutplace(nums4, 0, nums4.size()-1);
+    printArray(nums4);
 
 
     return 0;
