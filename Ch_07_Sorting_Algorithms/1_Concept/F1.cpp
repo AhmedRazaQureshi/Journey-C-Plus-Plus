@@ -128,6 +128,9 @@ void mergeSortOutplace(vector<int>& nums, int s, int e)
     mergeAlgoOutplace(nums, s, e);
 }
 
+//#5: Quick sort
+
+
 //Just a helper to print array
 void printArray(vector<int>& nums)
 {
