@@ -113,10 +113,78 @@ void mergeSort_M2(int* arr, int s, int e)
 
 }
 
+//Concept: Merge sort (Inplace)
+//Method-1: Using mergeAlgo
+void mergeAlgoInplace(vector<int>& nums, int s, int e)
+{
+    int m = s + (e - s) / 2;
+
+    int i = s;   //To traverse left part (arr1)
+    int j = m + 1; //To traverse right part (arr2)
+
+    while (i <= m && j <= e)
+    {
+        if (nums[i] > nums[j])
+        {
+            // Step-1: Swap nums[i] & nums[j]
+            swap(nums[i], nums[j]);
+            // Step-2: After the swap, reposition the element nums[j] to its correct position
+            int k = j;
+            while (k < e && nums[k] > nums[k + 1])
+            {
+                swap(nums[k], nums[k + 1]);
+                k++;
+            }   
+        }
+
+        // Step-3: Increment i
+        i++;
+    }
+}
+
+void mergeSortInplaceByMergeAlgo(vector<int>& nums, int s, int e)
+{
+    //BC
+    if(s >= e)
+        return;
+
+    //Recursion
+
+    //Divide
+    int m = s+(e-s)/2;
+    mergeSortInplaceByMergeAlgo(nums, s, m);
+    mergeSortInplaceByMergeAlgo(nums, m+1, e);
+
+    //Conquer & Combine
+    mergeAlgoInplace(nums, s, e);
+}
+
+//Method-2: Using Gap-Mehod
+void mergeAlgoGapMethod(vector<int>& nums, int s, int e)
+{
+    
+}
+
+void mergeSortByGapMethod(vector<int>& nums, int s, int e)
+{
+    //BC
+    if(s >= e)
+        return;
+
+    //Recursion
+    
+    //Divide
+    int m = s+(e-s)/2;
+    mergeSortByGapMethod(nums, s, m);
+    mergeSortByGapMethod(nums, m+1, e);
+
+    //Conquer and Combine
+    mergeAlgoGapMethod(nums, s, e);
+}
 
 int main()
 {
-    //Concept: Merge-sort
+    //Concept: Merge-sort (Outplace)
     //M-1
     int arr1[] = {2,5,1,19,7,55,0};
     int s1=0;
@@ -134,6 +202,23 @@ int main()
     for(auto i: arr2)   
         cout<<i<<" ";
     cout<<endl;
+
+
+    //Concept: Merge-sort (Inplace)
+    //M-1: Using mergeAlgo
+    vector<int> arr3 = {1,4,2,5,9,0,7,6,3,8};
+    mergeSortInplaceByMergeAlgo(arr3, 0, arr3.size()-1);
+    for(auto i: arr3)   
+        cout<<i<<" ";
+    cout<<endl;
+
+    //M-2: Using gap-method
+    vector<int> arr4 = {10,23,11,78,12,45,13};
+    mergeSortByGapMethod(arr4, 0, arr4.size()-1);
+    for(auto i: arr4)   
+        cout<<i<<" ";
+    cout<<endl;
+
 
     return 0;
 }

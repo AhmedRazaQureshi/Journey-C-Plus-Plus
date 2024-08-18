@@ -72,7 +72,7 @@ void insertionSort(vector<int>& nums)
 
 
 //#4: Merge sort [HAAL KHARAB]
-//M-1: Outplace
+//M-4.1: Outplace
 void mergeAlgoOutplace(vector<int>& nums, int s, int e)
 {
     //Step-1: Create two arrays
@@ -127,6 +127,54 @@ void mergeSortOutplace(vector<int>& nums, int s, int e)
     //Conquer & Combine
     mergeAlgoOutplace(nums, s, e);
 }
+
+//M-4.2.1: Inplace (USING MERGE-ALGO)
+void mergeAlgoInplace(vector<int>& nums, int s, int e)
+{
+    int m = s + (e - s) / 2;
+
+    int i = s;   //To traverse left part (arr1)
+    int j = m + 1; //To traverse right part (arr2)
+
+    while (i <= m && j <= e)
+    {
+        if (nums[i] > nums[j])
+        {
+            // Step-1: Swap nums[i] & nums[j]
+            swap(nums[i], nums[j]);
+            // Step-2: After the swap, reposition the element nums[j] to its correct position
+            int k = j;
+            while (k < e && nums[k] > nums[k + 1])
+            {
+                swap(nums[k], nums[k + 1]);
+                k++;
+            }   
+        }
+
+        // Step-3: Increment i
+        i++;
+    }
+}
+
+void mergeSortInplaceByMergeAlgo(vector<int>& nums, int s, int e)
+{
+    //BC
+    if(s >= e)
+        return;
+
+    //Recursion
+
+    //Divide
+    int m = s+(e-s)/2;
+    mergeSortInplaceByMergeAlgo(nums, s, m);
+    mergeSortInplaceByMergeAlgo(nums, m+1, e);
+
+    //Conquer & Combine
+    mergeAlgoInplace(nums, s, e);
+}
+
+//M-4.2.2: Inplace (USING GAP-METHOD)
+
 
 //#5: Quick sort
 
