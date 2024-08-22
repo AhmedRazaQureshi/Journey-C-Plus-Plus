@@ -174,9 +174,97 @@ void mergeSortInplaceByMergeAlgo(vector<int>& nums, int s, int e)
 }
 
 //M-4.2.2: Inplace (USING GAP-METHOD)
+void mergeAlgoGapMethod(vector<int>& nums, int s, int e)
+{
+    int gap = (e-s+1)/2 + (e-s+1)%2; //ceil( (e-s+1)/2 ) 
+    
+    while(gap > 0)
+    {
+        int i = s;
+        int j = i + gap;
 
+        while(j <= e)
+        {
+            if(nums[i] > nums[j])
+                swap(nums[i],nums[j]);
+
+            i++;
+            j++;
+        }
+
+        if(gap == 1) 
+            gap = 0;
+
+        else
+            gap = (gap/2) + (gap%2);
+
+    }
+}
+
+void mergeSortByGapMethod(vector<int>& nums, int s, int e)
+{
+    //BC
+    if(s >= e)
+        return;
+
+    //Recursion
+    
+    //Divide
+    int m = s+(e-s)/2;
+    mergeSortByGapMethod(nums, s, m);
+    mergeSortByGapMethod(nums, m+1, e);
+
+    //Conquer and Combine
+    mergeAlgoGapMethod(nums, s, e);
+}
 
 //#5: Quick sort
+int partition(vector<int>& nums, int s, int e)
+{
+    //Step-1: Chhose pivot
+    int pivot = nums[s];
+    int p = s;
+
+    //Step-2: Find correct position of pivot
+    int count = 0;
+    for(int i=s+1; i<=e; i++)
+        if(nums[i] <= pivot)
+            count++;
+
+    swap(nums[p], nums[s+count]);
+    p = s+count;
+
+    //Step-3: Ensure  smaller...<PIVOT>...greater
+    int i=s;
+    int j=e;
+    while(i<p && j>p)
+    {
+        while(nums[i] <= pivot)
+            i++;
+        
+        while(nums[j] > pivot)
+            j--;
+
+        if(i<p && j>p)
+            swap(nums[i],nums[j]);
+    }
+
+    return p;
+}
+
+void quickSort(vector<int>& nums, int s, int e)
+{
+    //BC
+    if(s >= e)
+        return;
+
+    //Rec
+    int p = partition(nums, s, e);
+
+    quickSort(nums, s, p-1);
+    quickSort(nums, p+1, e);
+}
+
 
 
 //Just a helper to print array
@@ -208,11 +296,25 @@ int main()
     insertionSort(nums3);
     printArray(nums3);
 
-    //#4: Merge sort (outplace)
+    //#4.1: Merge sort (outplace)
     vector<int> nums4 = {100, 87, 200, 65, 34, 90};
     mergeSortOutplace(nums4, 0, nums4.size()-1);
     printArray(nums4);
 
+    //#4.2.1: Inplace (USING MERGE-ALGO)
+    vector<int> nums5 = {12, 65, 1, 3, 2, 8, 50};
+    mergeSortInplaceByMergeAlgo(nums5, 0, nums5.size()-1);
+    printArray(nums5);
+
+    //#4.2.2: Inplace (USING GAP-METHOD)
+    vector<int> nums6 = {34, 56, 23, 1, 45, 100, 55};
+    mergeSortByGapMethod(nums6, 0, nums6.size()-1);
+    printArray(nums6);
+
+    //#5: Quick-sort
+    vector<int> nums7 = {1,6,3,9,7,0,2,5,4,8};
+    quickSort(nums7, 0, nums7.size()-1);
+    printArray(nums7);
 
     return 0;
 }

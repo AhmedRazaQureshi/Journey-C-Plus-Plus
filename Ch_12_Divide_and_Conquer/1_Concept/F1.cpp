@@ -162,7 +162,29 @@ void mergeSortInplaceByMergeAlgo(vector<int>& nums, int s, int e)
 //Method-2: Using Gap-Mehod
 void mergeAlgoGapMethod(vector<int>& nums, int s, int e)
 {
+    int gap = (e-s+1)/2 + (e-s+1)%2; //ceil( (e-s+1)/2 ) 
     
+    while(gap > 0)
+    {
+        int i = s;
+        int j = i + gap;
+
+        while(j <= e)
+        {
+            if(nums[i] > nums[j])
+                swap(nums[i],nums[j]);
+
+            i++;
+            j++;
+        }
+
+        if(gap == 1) 
+            gap = 0;
+
+        else
+            gap = (gap/2) + (gap%2);
+
+    }
 }
 
 void mergeSortByGapMethod(vector<int>& nums, int s, int e)
@@ -180,6 +202,54 @@ void mergeSortByGapMethod(vector<int>& nums, int s, int e)
 
     //Conquer and Combine
     mergeAlgoGapMethod(nums, s, e);
+}
+
+
+//Concept: Quick-sort
+int partition(vector<int>& nums, int s, int e)
+{
+    //Step-1: Chhose pivot
+    int pivot = nums[s];
+    int p = s;
+
+    //Step-2: Find correct position of pivot
+    int count = 0;
+    for(int i=s+1; i<=e; i++)
+        if(nums[i] <= pivot)
+            count++;
+
+    swap(nums[p], nums[s+count]);
+    p = s+count;
+
+    //Step-3: Ensure  smaller...<PIVOT>...greater
+    int i=s;
+    int j=e;
+    while(i<p && j>p)
+    {
+        while(nums[i] <= pivot)
+            i++;
+        
+        while(nums[j] > pivot)
+            j--;
+
+        if(i<p && j>p)
+            swap(nums[i],nums[j]);
+    }
+
+    return p;
+}
+
+void quickSort(vector<int>& nums, int s, int e)
+{
+    //BC
+    if(s >= e)
+        return;
+
+    //Rec
+    int p = partition(nums, s, e);
+
+    quickSort(nums, s, p-1);
+    quickSort(nums, p+1, e);
 }
 
 int main()
@@ -219,6 +289,13 @@ int main()
         cout<<i<<" ";
     cout<<endl;
 
+
+    //Concept: Quick-sort
+    vector<int> arr5 = {2,3,4,1,5,6,8,9,7,0};
+    quickSort(arr5, 0, arr5.size()-1);
+    for(auto i: arr5)   
+        cout<<i<<" ";
+    cout<<endl;
 
     return 0;
 }
