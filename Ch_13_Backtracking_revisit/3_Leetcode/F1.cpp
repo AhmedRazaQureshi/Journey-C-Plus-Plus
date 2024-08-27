@@ -204,4 +204,89 @@ vector<vector<string>> solveNQueens(int n)
     return possiblePositions;
 }
 
-//Optimising queenIsSafe() from TC: O(3n) to O(1) using Hash-Map
+// ##### Optimising queenIsSafe() from TC: O(3n) to O(1) using Hash-Map #####
+// ###
+unordered_map<int, bool> rowCheck;
+unordered_map<int, bool> upperDiagCheck;
+unordered_map<int, bool> lowerDiagCheck;
+// ###
+
+void storeSolution(vector<vector<char>> &board, vector<vector<string>> &ans)
+{
+    vector<string> currSol;
+    for (int i = 0; i < board.size(); i++)
+    {
+        string boardRow = "";
+        for (int j = 0; j < board[i].size(); j++)
+        {
+            if (board[i][j] == 'Q')
+                boardRow += 'Q';
+            else
+                boardRow += '.';
+        }
+        currSol.push_back(boardRow);
+    }
+    ans.push_back(currSol);
+}
+
+bool queenIsSafe(vector<vector<char>> &board, int i, int j, int n)
+{
+
+    // Check row (back)   Check upper-diagonal (back)   Check lower-diagonal (back)
+    // ###
+    if (rowCheck[i] == true || upperDiagCheck[n - 1 + j - i] == true || lowerDiagCheck[i + j] == true)
+        return false;
+    // ###
+
+    return true;
+}
+
+void queenSolver(vector<vector<char>> &board, int j, int n, vector<vector<string>> &ans)
+{
+    // BC
+    if (j >= n)
+    {
+        storeSolution(board, ans);
+        return;
+    }
+
+    // Rec
+    // iss j'th column mein har ek row try out krni hai
+    for (int i = 0; i < n; i++)
+    {
+        if (queenIsSafe(board, i, j, n))
+        {
+            // Place queen
+            board[i][j] = 'Q';
+
+            // ###
+            rowCheck[i] = true;
+            upperDiagCheck[(n - 1) + (j - i)] = true;
+            lowerDiagCheck[i + j] = true;
+            // ###
+
+            // Recursive call
+            queenSolver(board, j + 1, n, ans);
+            // Backtrack
+            board[i][j] = '.';
+
+            // ###
+            rowCheck[i] = false;
+            upperDiagCheck[(n - 1) + (j - i)] = false;
+            lowerDiagCheck[i + j] = false;
+            // ###
+        }
+    }
+}
+
+vector<vector<string>> solveNQueens(int n)
+{
+    vector<vector<char>> board(n, vector<char>(n, '.'));
+    vector<vector<string>> possiblePositions;
+    int j = 0; // iss column par kaam kr rha hu abhi
+    queenSolver(board, j, n, possiblePositions);
+
+    return possiblePositions;
+}
+
+//LEETCODE: 22. Generate parentheses
