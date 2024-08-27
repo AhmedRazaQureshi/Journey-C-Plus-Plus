@@ -290,3 +290,179 @@ vector<vector<string>> solveNQueens(int n)
 }
 
 //LEETCODE: 22. Generate parentheses
+//M-1: W/O Backtrack
+void solve(string currPar, int open, int close, vector<string> &ans)
+{
+    // BC
+    if (open == 0 && close == 0)
+    {
+        ans.push_back(currPar);
+        return;
+    }
+
+    // Rec
+    // Include '('
+    if (open > 0)
+    {
+        solve(currPar + '(', open - 1, close, ans);
+    }
+
+    // Include ')'
+    if (close > 0 && open < close)
+    {
+        solve(currPar + ')', open, close - 1, ans);
+    }
+}
+
+vector<string> generateParenthesis(int n)
+{
+    vector<string> ans;
+    solve("", n, n, ans);
+
+    return ans;
+}
+
+//M-2: With Backtracking
+void solve(string &currPar, int open, int close, vector<string> &ans)
+{
+    // BC
+    if (open == 0 && close == 0)
+    {
+        ans.push_back(currPar);
+        return;
+    }
+
+    // Rec
+
+    if (open > 0)
+    {
+        // Include '('
+        currPar.push_back('(');
+        solve(currPar, open - 1, close, ans);
+        // Backtrack
+        currPar.pop_back();
+    }
+
+    if (close > 0 && open < close)
+    {
+        // Include ')'
+        currPar.push_back(')');
+        solve(currPar, open, close - 1, ans);
+        // Backtrack
+        currPar.pop_back();
+    }
+}
+
+vector<string> generateParenthesis(int n)
+{
+    vector<string> ans;
+    string currAns = "";
+    solve(currAns, n, n, ans);
+
+    return ans;
+}
+
+
+//LEETCODE: 17. Letter combinations of a phone number
+void phonepadSolver(string &digits, int i, string &currOutput, vector<string> &map, vector<string> &ans)
+{
+    // BC
+    if (i >= digits.length())
+    {
+        ans.push_back(currOutput);
+        return;
+    }
+
+    // Rec
+    int currDigit = digits[i] - '0';
+    // Include all characters that can be pressed using currDigit
+    for (int j = 0; j < map[currDigit].length(); j++)
+    {
+        // include map[currDigit][j]
+        currOutput.push_back(map[currDigit][j]);
+        phonepadSolver(digits, i + 1, currOutput, map, ans);
+
+        // Backtrack
+        currOutput.pop_back();
+    }
+}
+
+vector<string> letterCombinations(string digits)
+{
+    // Edge case
+    if (digits.length() == 0)
+        return {};
+
+    // Regular cases
+    vector<string> map = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    vector<string> ans;
+    int i = 0;
+    string currOutput = ""; // 23 => "ad" (say)  [yeh "ad" iss mein store hoga]
+
+    phonepadSolver(digits, i, currOutput, map, ans);
+    return ans;
+}
+
+//LEETCODE: 37. Sudoku solver
+bool sudokuIsSafe(vector<vector<char>> &board, int row, int col, char val)
+{
+    int n = board.size();
+
+    for (int k = 0; k < n; k++)
+    {
+        // Row-check
+        if (board[row][k] == val)
+            return false;
+        // Col-check
+        if (board[k][col] == val)
+            return false;
+        // Box-check
+        if (board[3 * (row / 3) + (k / 3)][3 * (col / 3) + (k % 3)] == val)
+            return false;
+    }
+    return true;
+}
+
+bool sudokuSolver(vector<vector<char>> &board)
+{
+    int n = board.size();
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            // Clues ko over-ride nahi karna
+            if (board[i][j] == '.')
+            {
+                // Try filling all values 1-9 in this cell
+                for (char val = '1'; val <= '9'; val++)
+                {
+                    if (sudokuIsSafe(board, i, j, val))
+                    {
+                        // Place val
+                        board[i][j] = val;
+                        // Recursice call
+                        bool aageKaSolution = sudokuSolver(board);
+                        if (aageKaSolution) // iss cell mein 'val' rakh k aage ka solution nikal payega
+                            return true;
+                        else // iss cell mein 'val' rakh k aage ka solution nahi niklega => backtrack
+                            board[i][j] = '.';
+                    }
+                }
+
+                // 1-9 saare try kr liye, but iss cell k liye nahi nikla solution => aage call hi na maaro, backtrack kr lo
+                return false;
+            }
+        }
+    }
+
+    // All cells filled => return true
+    return true;
+}
+
+void solveSudoku(vector<vector<char>> &board)
+{
+    sudokuSolver(board);
+}
+
+
+//
