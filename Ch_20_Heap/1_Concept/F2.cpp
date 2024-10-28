@@ -1,8 +1,7 @@
-//#5: Heap-Sort
-
 #include <bits/stdc++.h>
 using namespace std;
 
+// Concept: Heap-Sort
 class Heap
 {
     public:

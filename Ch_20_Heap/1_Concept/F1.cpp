@@ -1,10 +1,17 @@
-//#5: Heap-Sort
-
 #include <bits/stdc++.h>
 using namespace std;
 
+/* Concept: MaxHeap
+    0. Heap using arrays, 
+    1. Bottom-Up-Heapify
+    2. Insertion
+    3. Top-Down-Heapify
+    4. Deletion
+    5. Build heap from input
+*/
 class Heap
 {
+    // 0. Heap using arrays
     public:
     vector<int> arr;
     int size;
@@ -13,7 +20,8 @@ class Heap
     {
         size = 0;
     }
-
+    
+    // 1. Bottom-Up-Heapify
     void heapify_bottom_to_top(int i, int par_i)
     {
         // So that insertion-as-first node pe heapify krna hi na padey
@@ -32,6 +40,20 @@ class Heap
         }
     }
 
+    // 2. Insertion
+    void insertion(int val)
+    {
+        //A. Insert at end
+        arr.push_back(val);
+        size++;
+
+        //B. Heapify
+        int i = size-1;         //Index of newly inserted element
+        int par_i = (i-1)/2;    //Index of parent of i
+        heapify_bottom_to_top(i, par_i);
+    }
+
+    // 3. Top-Down-Heapify
     void heapify_top_to_bottom(int i)
     {
         while (true)
@@ -54,6 +76,21 @@ class Heap
         }
     }
 
+    // 4. Deletion
+    void deletion()
+    {
+        //A. Swap first & last element 
+        swap(arr[0], arr[size-1]);
+
+        //B. Delete the last element
+        arr.pop_back();
+        size--;
+
+        //C. Heapify
+        heapify_top_to_bottom(0);
+    }
+
+    // 5. Build heap from input
     void buildHeap(vector<int> input)
     {
         for(auto key: input)
@@ -67,36 +104,41 @@ class Heap
         }
     }
 
-    void heapSort(vector<int>& inpt)
+    // Display
+    void display()
     {
-        //1. Build Heap
-        buildHeap(inpt);
-
-        //2. Delete elements one by one 
-        while(size > 0)
-        {
-            //A. Delete 
-            swap(arr[0], arr[size-1]);
-            size--;
-            
-            //B. Heapify
-            heapify_top_to_bottom(0);
-        }
-
-        inpt = arr;
+        for(auto i: arr)
+            cout<<i<<",";
+        cout<<endl;
     }
-
 
 };
 
+
 int main()
 {
-    vector<int> inpt = {6,1,7,2,8,3,9,4,10,5};
+    //1. Bottom-Up-Heapify & 2. Insertion
     Heap h1;
-    h1.heapSort(inpt);    
 
-    for(auto i: inpt)
-        cout<<i<<",";
-    cout<<endl;
+    h1.insertion(1);
+    h1.insertion(2);
+    h1.insertion(3);
+    h1.insertion(4);
+    h1.insertion(5);
+
+    h1.display();
+
+    //3. Top-Down-Heapify & 4. Deletion
+    h1.deletion();
+
+    h1.display();
+
+    //5. Build heap from input
+    vector<int> inp = {5,10,20,40,45,55,50,60,100};
+    Heap h2;
+    h2.buildHeap(inp);
+
+    h2.display();
+
 
 }
