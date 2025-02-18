@@ -1,5 +1,7 @@
 # Learn DSA and C++ through my repository.
 # <hr>
+# Please go through "MY_FULL_FLEDGED_NOTES.pdf" first.
+# <hr>
 # Structure of the repository:
 + Ch_NUM_NAME  (Chapter number & name)
   + 1_Concept  (Conceptual knowledge for that chapter)
